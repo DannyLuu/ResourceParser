@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-   <bean id="inputScanner" class="utility.InputScanner">
-   </bean>
-   
-   <bean id="en_resource" class="utility.Reader">
-       <property name="file" value="file:C:\Users\Hisoka\workspace\ResourceParser\src\resources\messages\base_en.properties" />
-   </bean>
-   
-   <bean id="fr_resource" class="utility.Reader">
-       <property name="file" value="file:C:\Users\Hisoka\workspace\ResourceParser\src\resources\messages\base_fr.properties" />
-   </bean>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- Enable Autowiring -->
+	<context:annotation-config />
+
+	<!-- Resource Property files -->
+	<bean id="en_resource" class="utility.parser.Parser">
+		<property name="file"
+			value="file:src/resources/messages/base_en.properties" />
+	</bean>
+	<bean id="fr_resource" class="utility.parser.Parser">
+		<property name="file"
+			value="file:src/resources/messages/base_fr.properties" />
+	</bean>
+
+	<bean id="fileReader" class="utility.reader.impl.FileReaderImpl" />
+	<bean id="resourceParserService" class="utility.parser.impl.ResourceParserServiceImpl" />
 
 </beans>
