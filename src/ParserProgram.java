@@ -1,10 +1,12 @@
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import utility.parser.Parser;
-import utility.parser.ResourceParserServiceFacade;
-import utility.reader.FileReaderFacade;
+import resources.Resource;
+import utility.comparator.service.PropertyComparatorService;
+import utility.reader.service.FileReaderService;
 
 /**
  * Main Parser Program
@@ -21,12 +23,17 @@ public class ParserProgram {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
 		// Resource Files
-		Parser en_resource = (Parser) context.getBean("en_resource");
-		Parser fr_resource = (Parser) context.getBean("fr_resource");
-		FileReaderFacade fileReader = (FileReaderFacade) context.getBean("fileReader");
-		ResourceParserServiceFacade r = (ResourceParserServiceFacade) context.getBean("resourceParserService");
-		r.generateResourceFromFile(en_resource.getFile());
+		Resource en_resource = (Resource) context.getBean("en_resource");
+		Resource fr_resource = (Resource) context.getBean("fr_resource");
 
+		FileReaderService fileReader = (FileReaderService) context.getBean("fileReaderService");
+		PropertyComparatorService propertyComparatorService = (PropertyComparatorService) context
+				.getBean("propertyComparatorService");
+
+		Properties a = fileReader.generateProperties(en_resource.getFile());
+		Properties b = fileReader.generateProperties(fr_resource.getFile());
+
+		propertyComparatorService.comparePropertiesOf(a, b);
 	}
 
 }

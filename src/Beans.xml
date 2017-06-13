@@ -12,16 +12,16 @@
 	<context:annotation-config />
 
 	<!-- Resource Property files -->
-	<bean id="en_resource" class="utility.parser.Parser">
+	<bean id="en_resource" class="resources.Resource">
 		<property name="file"
 			value="file:src/resources/messages/base_en.properties" />
 	</bean>
-	<bean id="fr_resource" class="utility.parser.Parser">
+	<bean id="fr_resource" class="resources.Resource">
 		<property name="file"
 			value="file:src/resources/messages/base_fr.properties" />
 	</bean>
 
-	<bean id="fileReader" class="utility.reader.impl.FileReaderImpl" />
-	<bean id="resourceParserService" class="utility.parser.impl.ResourceParserServiceImpl" />
+	<bean id="fileReaderService" class="utility.reader.service.impl.FileReaderServiceImpl" />
+	<bean id="propertyComparatorService" class="utility.comparator.service.impl.PropertyComparatorServiceImpl" />
 
 </beans>

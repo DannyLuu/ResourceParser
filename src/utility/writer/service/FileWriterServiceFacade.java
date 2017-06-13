@@ -1,4 +1,4 @@
-package utility.writer;
+package utility.writer.service;
 
 public interface FileWriterServiceFacade {
 

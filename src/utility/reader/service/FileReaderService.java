@@ -1,14 +1,17 @@
-package utility.reader;
+package utility.reader.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
  * @author Hisoka
  *
  */
-public interface FileReaderFacade {
+public interface FileReaderService {
+
+	Properties generateProperties(File file);
 
 	/**
 	 * Parses the String to return an array of Strings separated by the
